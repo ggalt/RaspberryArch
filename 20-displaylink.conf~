@@ -1,10 +1,10 @@
-################ DisplayLink Stuff ###################                                                                                                                                                                                       
+################ DisplayLink Stuff ###################
 Section "Device"
        Identifier      "DisplayLinkDevice"
        Driver          "fbdev"
        BusID           "USB"               # needed to use multiple DisplayLink devices 
        Option          "fbdev" "/dev/fb1"  # change to whatever device you want to use
-       Option          "ShadowFB" "off"
+       Option 	       "ShadowFB" "off"
 #      Option          "rotate" "CCW"      # uncomment for rotation
 EndSection
 
@@ -19,22 +19,16 @@ Section "Screen"
 #       DefaultDepth    16
 EndSection
 
-####################### TOUCHSCREEN ####################
 Section "InputDevice"
         Identifier "touchscreen"
         Driver "evdev"
-#        Option "Device" "/dev/input/event3"
-        Option "Device" "/dev/input/by-id/usb-e2i_Technology__Inc._USB_Touchpanel_L000000000-event-if00
+        Option "Device" "/dev/input/event0"
         Option "DeviceName" "touchscreen"
         Option "ReportingMode"  "Raw"
         Option "SendCoreEvents" "On"
         Option "Calibrate" "1"
-        Option "InvertY"        "true"
-#       Option "InvertX"        "true"
-#       Option "MinX" "630"  
-#       Option "MinY" "31000"  
-#       Option "MaxX" "31700"  
-#       Option "MaxY" "1000"  
+        Option "InvertY" "false"
+#        Option "InvertY" "true"
 EndSection
 
 Section "ServerLayout" 
@@ -42,3 +36,6 @@ Section "ServerLayout"
        Screen 0        "DisplayLinkScreen" 0 0 
        InputDevice "touchscreen" "CorePointer"
 EndSection
+
+
+
