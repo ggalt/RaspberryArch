@@ -1,0 +1,98 @@
+From 5b789ae37267e2e6ce4fc941694873e2d853531a Mon Sep 17 00:00:00 2001
+From: George Galt <george.galt@gmail.com>
+Date: Mon, 4 Nov 2013 13:52:08 -0500
+Subject: [PATCH] Adjust makefiles and config files to use a defined term
+ PREFIX for the location of lua includes.
+
+---
+ Makefile                       | 1 +
+ lib-src/luaexpat-1.2.0/config  | 8 ++++----
+ lib-src/luamd5/Makefile        | 2 +-
+ lib-src/luasocket-2.0.2/config | 2 +-
+ lib-src/luazipfilter/Makefile  | 2 +-
+ src/Makefile                   | 2 +-
+ 6 files changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 069df10..b186a6a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,5 @@
+ # Jivelite makefile
++PREFIX = /usr/local
+ 
+ all: srcs libs
+ 
+diff --git a/lib-src/luaexpat-1.2.0/config b/lib-src/luaexpat-1.2.0/config
+index 099daa9..fc91ceb 100644
+--- a/lib-src/luaexpat-1.2.0/config
++++ b/lib-src/luaexpat-1.2.0/config
+@@ -1,12 +1,12 @@
+ # Installation directories
+ # System's libraries directory (where binary libraries are installed)
+-LUA_LIBDIR= /usr/local/lib/lua/5.0
++LUA_LIBDIR= $(PREFIX)/lib/lua/5.0
+ # System's lua directory (where Lua libraries are installed)
+-LUA_DIR= /usr/local/share/lua/5.0
++LUA_DIR= $(PREFIX)/share/lua/5.0
+ # Lua includes directory
+-LUA_INC= /usr/local/include/luajit-2.0
++LUA_INC= $(PREFIX)/include/luajit-2.0
+ # Expat includes directory
+-EXPAT_INC= /usr/local/include
++EXPAT_INC= $(PREFIX)/include
+ 
+ # OS dependent
+ #LIB_OPTION= -shared #for Linux
+diff --git a/lib-src/luamd5/Makefile b/lib-src/luamd5/Makefile
+index e31b69c..aebb5e5 100644
+--- a/lib-src/luamd5/Makefile
++++ b/lib-src/luamd5/Makefile
+@@ -2,7 +2,7 @@
+ 
+ # change these to reflect your Lua installation
+ #LUA= /tmp/lhf/lua-5.1.4
+-LUAINC= /usr/local/include/luajit-2.0
++LUAINC= $(PREFIX)/include/luajit-2.0
+ LUALIB= $(LUA)/lib
+ LUABIN= $(LUA)/bin
+ 
+diff --git a/lib-src/luasocket-2.0.2/config b/lib-src/luasocket-2.0.2/config
+index 4260224..6ab644d 100644
+--- a/lib-src/luasocket-2.0.2/config
++++ b/lib-src/luasocket-2.0.2/config
+@@ -18,7 +18,7 @@ UNIX_SO=unix.$(EXT)
+ #LUAINC=-I/usr/local/include/lua50
+ #LUAINC=-I/usr/local/include/lua5.1
+ #LUAINC=-Ilua-5.1.1/src
+-LUAINC=-I/usr/local/include/luajit-2.0
++LUAINC=-I$(PREFIX)/include/luajit-2.0
+ 
+ #------
+ # Compat-5.1 directory
+diff --git a/lib-src/luazipfilter/Makefile b/lib-src/luazipfilter/Makefile
+index 846a3a9..20c5728 100644
+--- a/lib-src/luazipfilter/Makefile
++++ b/lib-src/luazipfilter/Makefile
+@@ -1,4 +1,4 @@
+-CFLAGS  = -O2 -I/usr/local/include/luajit-2.0
++CFLAGS  = -O2 -I$(PREFIX)/include/luajit-2.0
+ LDFLAGS = $(MYLDFLAGS) -lz
+ 
+ SOURCES = luazipfilter.c
+diff --git a/src/Makefile b/src/Makefile
+index fb51814..49a5dc6 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -1,7 +1,7 @@
+ LDFLAGS ?= -lrt
+ SOURCES ?= platform_linux.c
+ 
+-CFLAGS  += -I. -I/usr/local/include/luajit-2.0 -I/usr/include/SDL -Wall -fPIC
++CFLAGS  += -I. -I$(PREFIX)/include/luajit-2.0 -I/usr/include/SDL -Wall -fPIC
+ LDFLAGS += -lSDL -lSDL_ttf -lSDL_image -lSDL_gfx -lluajit-5.1 -lm -lpthread
+ EXE = ../bin/jivelite
+ 
+-- 
+1.8.4.2
+
