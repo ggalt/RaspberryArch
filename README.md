@@ -1,7 +1,9 @@
-RaspberryArch
+RaspberryPiJive
 =============
 
-Getting Mimo 720F DisplayLink Screen Running in Arch Linux on Raspberry Pi
+Setting Up a Raspberry Pi with Jivelite as a stand-alone Player
+
+Instructions in the Wiki at https://github.com/ggalt/RaspberryArch/wiki/How-To-Make-a-RaspberryPi-Jive-Player
 
 The stock Arch kernel supports the standard Mimo 720F DisplayLink through the framebuffer.
 You will need to install xf86-video-fbdev and the rest of the standard xorg installation
